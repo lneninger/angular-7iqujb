@@ -1,13 +1,30 @@
-<button (click)="this.filter('ALL')">ALL</button>
-<button (click)="this.filter('EVEN')">even</button>
-
-<cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport">
-  <div *cdkVirtualFor="let item of this.filtered" class="example-item">
-    {{item}}
-    <app-item-wrapper [item]="item"></app-item-wrapper>
+<div class="options">
+  <div>
+    <button (click)="this.filter('ALL')">ALL</button>
+    <button (click)="this.filter('EVEN')">even</button>
   </div>
-</cdk-virtual-scroll-viewport>
 
+  <section>Index: {{this.index}}</section>
+</div>
+
+<div class="example-viewport-wrapper">
+  <!-- <cdk-virtual-scroll-viewport
+    appendOnly
+    itemSize="50"
+    class="example-viewport"
+    (scrolledIndexChange)="this.onIndexChange($event)"
+  > -->
+  <cdk-virtual-scroll-viewport
+    appendOnly
+    itemSize="50"
+    class="example-viewport"
+  >
+    <div *cdkVirtualFor="let item of this.filtered" class="example-item">
+      {{item}}
+      <app-item-wrapper [item]="item"></app-item-wrapper>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>
 <!-- Copyright 2022 Google LLC. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
     can be found in the LICENSE file at https://angular.io/license -->

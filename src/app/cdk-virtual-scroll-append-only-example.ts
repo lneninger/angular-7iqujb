@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import { ISmartField } from './models/items.models';
 
 /** @title Virtual scroll with view recycling disabled. */
 @Component({
@@ -9,8 +10,18 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 })
 export class CdkVirtualScrollAppendOnlyExample {
 
+  index: number;
 
-  items = Array.from({length: 100000}).map((_, i) => `Item #${i}`);
+  items = Array.from({length: 100000}).map((_, i) => {
+    return {
+      id: i,
+      value: `Item #${i}`,
+      metadata: {
+        type: i % 1 ? 'TEXT' : (i % 2 ? 'RADIO' : 'CHECK')
+      }
+    } as ISmartField;
+    // return `Item #${i}`;
+  });
   filtered = this.items;
 
   filter(type: 'ALL' | 'EVEN'){
@@ -23,6 +34,10 @@ export class CdkVirtualScrollAppendOnlyExample {
             break;
           }
   }
+
+  // onIndexChange($event: number){
+  //   this.index = $event;
+  // }
 }
 
 
