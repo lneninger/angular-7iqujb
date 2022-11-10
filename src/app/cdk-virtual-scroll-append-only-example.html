@@ -1,24 +1,25 @@
 <div class="options">
   <div>
     <button (click)="this.filter('ALL')">ALL</button>
-    <button (click)="this.filter('EVEN')">even</button>
+    <button (click)="this.filter('2X')">2X</button>
+    <button (click)="this.filter('3X')">3X</button>
   </div>
 
   <section>Index: {{this.index}}</section>
 </div>
 
 <div class="example-viewport-wrapper">
-  <!-- <cdk-virtual-scroll-viewport
-    appendOnly
-    itemSize="50"
-    class="example-viewport"
-    (scrolledIndexChange)="this.onIndexChange($event)"
-  > -->
   <cdk-virtual-scroll-viewport
     appendOnly
     itemSize="50"
     class="example-viewport"
+    (scrolledIndexChange)="this.onIndexChange($event)"
   >
+    <!-- <cdk-virtual-scroll-viewport
+    appendOnly
+    itemSize="50"
+    class="example-viewport"
+  > -->
     <div *cdkVirtualFor="let item of this.filtered" class="example-item">
       {{item}}
       <app-item-wrapper [item]="item"></app-item-wrapper>
